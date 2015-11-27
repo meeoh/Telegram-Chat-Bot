@@ -2,7 +2,7 @@
 
 A simple bot used in my personal telegram conversations. Allows users to do the following commands:
 
-/all - tag everyone in the chat <br> - Currently this is hardcoded per bot, since I cant find a way for a bot to look up users in a chat <br>
+/all - tag everyone in the chat - Currently this is hardcoded per bot, since I cant find a way for a bot to look up users in a chat <br>
 /cs or /play - tags people who play cs (counterstrike) \* <br>
 /zias /abdullahs /ahmads /bhattis - tags people in a family \*\* <br>
 /urban {{term}} - displays the definition of term from urban dictionary <br>
