@@ -9,5 +9,5 @@ A simple bot used in my personal telegram conversations. Allows users to do the 
 /wolf {{expression}} - evaluates and displays expression
 /help - lists commands available
 
-* - only applies to friends bot
-** - only applies to cousins bot
+\* - only applies to friends bot
+\** - only applies to cousins bot
