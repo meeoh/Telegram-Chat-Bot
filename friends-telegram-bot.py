@@ -30,7 +30,7 @@ except ImportError:
 
 def main():
     # Telegram Bot Authorization Token
-    bot = telegram.Bot("TOKEN")
+    bot = telegram.Bot("196910141:AAHUtQt2J_n5BNJkrStLocNpFNUKhszySlk")
 
     # get the first pending update_id, this is so we can skip over it in case
     # we get an "Unauthorized" exception.
@@ -72,19 +72,20 @@ def echo(bot, update_id):
             # Reply to the message
 	    words = message.split(' ')
 	    users = "@bmann2 @meeoh @HonkeyGuy @gurmL @Newgz @KingOfTheJews @akhan47"
-	    csUsers = "@bmann2 @meeoh @HonkeyGuy @Newgz"
+	    gamePlayers = "@bmann2 @meeoh @HonkeyGuy @Newgz"
+	    words[0] = words[0].lower()
 	    if (words[0] == "/all"):
 		if(len(words)>=2):
 			response = users + " " + message.split(' ', 1)[1]
 	    		bot.sendMessage(chat_id=chat_id,text=response)
 		else:
 			bot.sendMessage(chat_id=chat_id,text=users)
-	    elif (words[0] == "/cs" or words[0] == "/play"):
+	    elif (words[0] == "/cs" or words[0] == "/play" or words[0] == "/ow"):
 		if(len(words)>=2):
-			response = csUsers + " " + message.split(' ', 1)[1]
+			response = gamePlayers + " " + message.split(' ', 1)[1]
 			bot.sendMessage(chat_id=chat_id,text=response)
 		else:
-			bot.sendMessage(chat_id=chat_id,text=csUsers)
+			bot.sendMessage(chat_id=chat_id,text=gamePlayers + " play?")
 	    elif (words[0] == "/urban"):
 		if(len(words) < 2):
 			response = "Please provide a term to look up in the Urban Dictionary"
@@ -112,7 +113,7 @@ def echo(bot, update_id):
 			bot.sendMessage(chat_id=chat_id,text=pod_value)
 	
 	    elif (words[0] == "/help"):
-		response = "The commands you can type are: \n1. '/all {{message}}' to send a message with everyone mentioned\n2. '/cs {{message}}' or '/play' to send a message with people who play cs mentioned\n3. '/urban {{term}}' to define a term in urban dictionary\n 4. '/wolf {{expression}}' to evaluate an expression using wolframalpha\n"
+		response = "The commands you can type are: \n1. '/all {{message}}' to send a message with everyone mentioned\n2. '/cs {{message}}' or '/play' or '/ow' to send a message with people who play cs/ow mentioned\n3. '/urban {{term}}' to define a term in urban dictionary\n 4. '/wolf {{expression}}' to evaluate an expression using wolframalpha\n"
 		bot.sendMessage(chat_id=chat_id, text=response)
 		
 	    else:

@@ -30,7 +30,7 @@ except ImportError:
 
 def main():
     # Telegram Bot Authorization Token
-    bot = telegram.Bot("TOKEN")
+    bot = telegram.Bot("172862754:AAEW0v_hXnz4riP8ukK9RrddEwIGTSZ7ltg")
 
     # get the first pending update_id, this is so we can skip over it in case
     # we get an "Unauthorized" exception.
@@ -71,11 +71,12 @@ def echo(bot, update_id):
         if message:
             # Reply to the message
 	    words = message.split(' ')
-	    users = "@meeoh @KamalZia @Sh4ni @basil3 @jullybhai @Paytheo @amadrx8 @moezb"
+	    users = "@meeoh @KamalZia @Sh4ni @basil3 @jullybhai @Paytheo @amadrx8 @moezb @gaandslayer @nomar"
 	    zias = "@KamalZia @Sh4ni"
-	    ahmads = "@jullybhai @basil3"
-            abdullahs = "@meeoh @Paytheo @amadrx8"
+	    ahmads = "@jullybhai @basil3 @gaandslayer"
+            abdullahs = "@meeoh @Paytheo @amadrx8 @nomar"
 	    bhattis = "@moezb @riyad"
+	    words[0] = words[0].lower()
 
 	    if (words[0] == "/all"):
 		if(len(words)>=2):
