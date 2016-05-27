@@ -71,8 +71,8 @@ def echo(bot, update_id):
         if message:
             # Reply to the message
 	    words = message.split(' ')
-	    users = "@bmann2 @meeoh @HonkeyGuy @gurmL @Newgz @KingOfTheJews @akhan47"
-	    gamePlayers = "@bmann2 @meeoh @HonkeyGuy @Newgz"
+	    users = "@bmann2 @meeoh @HonkeyGuy @gurmL @Newgz @KingOfTheJews @akhan47 @Braybowler"
+	    gamePlayers = "@bmann2 @meeoh @HonkeyGuy @Newgz @Braybowler"
 	    words[0] = words[0].lower()
 	    if (words[0] == "/all"):
 		if(len(words)>=2):
@@ -85,7 +85,7 @@ def echo(bot, update_id):
 			response = gamePlayers + " " + message.split(' ', 1)[1]
 			bot.sendMessage(chat_id=chat_id,text=response)
 		else:
-			bot.sendMessage(chat_id=chat_id,text=gamePlayers + " play?")
+			bot.sendMessage(chat_id=chat_id,text=gamePlayers)
 	    elif (words[0] == "/urban"):
 		if(len(words) < 2):
 			response = "Please provide a term to look up in the Urban Dictionary"
@@ -115,7 +115,9 @@ def echo(bot, update_id):
 	    elif (words[0] == "/help"):
 		response = "The commands you can type are: \n1. '/all {{message}}' to send a message with everyone mentioned\n2. '/cs {{message}}' or '/play' or '/ow' to send a message with people who play cs/ow mentioned\n3. '/urban {{term}}' to define a term in urban dictionary\n 4. '/wolf {{expression}}' to evaluate an expression using wolframalpha\n"
 		bot.sendMessage(chat_id=chat_id, text=response)
-		
+	    elif (words[0] == "/test"):
+		response = "Test message"
+		bot.sendMessage(chat_id=chat_id, text=response)
 	    else:
 		
 	 	response = words[0].strip() + " is not a recognized command, ask shameel to make it or stop trying dumb crap"

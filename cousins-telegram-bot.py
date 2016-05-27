@@ -137,9 +137,10 @@ def echo(bot, update_id):
 	    elif (words[0] == "/help"):
 		response = "The commands you can type are: \n1. '/all {{message}}' to send a message with everyone mentioned\n2. '/zias or /bhattis or /ahmads or /abdullahs {{message}}' to send a message with appropriate family members mentioned\n3. '/urban {{term}}' to define a term in urban dictionary\n 4. '/wolf {{expression}}' to evaluate an expression using wolframalpha\n"
 		bot.sendMessage(chat_id=chat_id, text=response)
-		
+	    elif (words[0] == "/test"):
+		response = "Test message"
+		bot.sendMessage(chat_id=chat_id, text=response)
 	    else:
-		
 	 	response = words[0].strip() + " is not a recognized command, ask shameel to make it or stop trying dumb crap"
 		bot.sendMessage(chat_id=chat_id, text=response)
 
