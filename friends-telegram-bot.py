@@ -30,7 +30,7 @@ except ImportError:
 
 def main():
     # Telegram Bot Authorization Token
-    bot = telegram.Bot("196910141:AAHUtQt2J_n5BNJkrStLocNpFNUKhszySlk")
+    bot = telegram.Bot("changeme")
 
     # get the first pending update_id, this is so we can skip over it in case
     # we get an "Unauthorized" exception.
