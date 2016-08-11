@@ -8,6 +8,7 @@ A simple bot used in my personal telegram conversations. Allows users to do the 
 /urban {{term}} - displays the definition of term from urban dictionary <br>
 /wolf {{expression}} - evaluates and displays expression <br>
 /help - lists commands available <br>
+/test - returns a test message <br>
 
 \* - only applies to friends bot <br>
 \*\* - only applies to cousins bot
