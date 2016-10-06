@@ -30,7 +30,7 @@ except ImportError:
 
 def main():
     # Telegram Bot Authorization Token
-    bot = telegram.Bot("changeme")
+    bot = telegram.Bot("172862754:AAEW0v_hXnz4riP8ukK9RrddEwIGTSZ7ltg")
 
     # get the first pending update_id, this is so we can skip over it in case
     # we get an "Unauthorized" exception.
@@ -71,6 +71,7 @@ def echo(bot, update_id):
         if message:
             # Reply to the message
 	    words = message.split(' ')
+	    requester = update.message.from_user.username
 	    users = "@meeoh @KamalZia @Sh4ni @basil3 @jullybhai @Paytheo @amadrx8 @moezb @gaandslayer @nomar"
 	    zias = "@KamalZia @Sh4ni"
 	    ahmads = "@jullybhai @basil3 @gaandslayer"
@@ -138,7 +139,7 @@ def echo(bot, update_id):
 		response = "The commands you can type are: \n1. '/all {{message}}' to send a message with everyone mentioned\n2. '/zias or /bhattis or /ahmads or /abdullahs {{message}}' to send a message with appropriate family members mentioned\n3. '/urban {{term}}' to define a term in urban dictionary\n 4. '/wolf {{expression}}' to evaluate an expression using wolframalpha\n"
 		bot.sendMessage(chat_id=chat_id, text=response)
 	    elif (words[0] == "/test"):
-		response = "Test message"
+		response = "Test message for @" + str(requester)
 		bot.sendMessage(chat_id=chat_id, text=response)
 	    else:
 	 	response = words[0].strip() + " is not a recognized command, ask shameel to make it or stop trying dumb crap"
