@@ -120,6 +120,13 @@ def echo(bot, update_id):
 		response = "Test message for @" + str(requester)
 
 		bot.sendMessage(chat_id=chat_id, text=response)
+	    elif (words[0] == "/newgz"):
+		response = ""
+		for i in range(0,100):
+                  response = response + "@newgz "
+		  if i==50:
+		    response = response + "\n"
+		bot.sendMessage(chat_id=chat_id, text=response)
 	    else:
 		
 	 	response = words[0].strip() + " is not a recognized command, ask shameel to make it or stop trying dumb crap"
