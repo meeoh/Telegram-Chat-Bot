@@ -32,7 +32,6 @@ except ImportError:
 
 def main():
     
-    return 1
     # Telegram Bot Authorization Token
     bot = telegram.Bot(API_KEY)     
 
