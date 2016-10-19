@@ -22,6 +22,7 @@ import urbandict
 from bs4 import BeautifulSoup
 from time import sleep
 import re
+from cousinsApiKey import API_KEY
 
 try:
     from urllib.error import URLError
@@ -31,7 +32,7 @@ except ImportError:
 
 def main():
     # Telegram Bot Authorization Token
-    bot = telegram.Bot("172862754:AAEW0v_hXnz4riP8ukK9RrddEwIGTSZ7ltg")
+    bot = telegram.Bot(API_KEY)
 
     # get the first pending update_id, this is so we can skip over it in case
     # we get an "Unauthorized" exception.
