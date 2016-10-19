@@ -21,6 +21,7 @@ import requests
 import urbandict
 from bs4 import BeautifulSoup
 from time import sleep
+import re
 
 try:
     from urllib.error import URLError
@@ -30,7 +31,7 @@ except ImportError:
 
 def main():
     # Telegram Bot Authorization Token
-    bot = telegram.Bot("196910141:AAHUtQt2J_n5BNJkrStLocNpFNUKhszySlk")
+    bot = telegram.Bot("196910141:AAHUtQt2J_n5BNJkrStLocNpFNUKhszySlk")     
 
     # get the first pending update_id, this is so we can skip over it in case
     # we get an "Unauthorized" exception.
@@ -65,8 +66,15 @@ def echo(bot, update_id):
     for update in bot.getUpdates(offset=update_id, timeout=10):
         # chat_id is required to reply to any message
         chat_id = update.message.chat_id
-        update_id = update.update_id + 1
-        message = update.message.text
+        update_id = update.update_id + 1      
+        try:
+            # UCS-4
+            patt = re.compile(u'([\U00002600-\U000027BF])|([\U0001f300-\U0001f64F])|([\U0001f680-\U0001f6FF])')
+        except re.error:
+            # UCS-2
+            patt = re.compile(u'([\u2600-\u27BF])|([\uD83C][\uDF00-\uDFFF])|([\uD83D][\uDC00-\uDE4F])|([\uD83D][\uDE80-\uDEFF])')        
+        message = patt.sub('_emoji_', update.message.text)     
+        
 
         if message:
             # Reply to the message
