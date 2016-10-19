@@ -12,3 +12,8 @@ A simple bot used in my personal telegram conversations. Allows users to do the 
 
 \* - only applies to friends bot <br>
 \*\* - only applies to cousins bot
+
+### Usage
+-Change cousinsApiKeyTemplate or friendsApiKeyTemplate to cousinsApiKey.py or friendsApiKey.py and enter your telegram bot API (from bot father) there. <br>
+-Run `pip install requirements` <br>
+-Run python friends-telegram-bot.py or cousins-telegram-bot.py
