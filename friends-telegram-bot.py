@@ -67,8 +67,14 @@ def echo(bot, update_id):
     # Request updates after the last update_id
     for update in bot.getUpdates(offset=update_id, timeout=10):
         # chat_id is required to reply to any message
-        chat_id = update.message.chat_id
+	#print update.message	
+	#print update.message.chat_id
         update_id = update.update_id + 1      
+	try:
+	    chat_id = update.message.chat_id
+	except:
+	    return update_id
+
         try:
             # UCS-4
             patt = re.compile(u'([\U00002600-\U000027BF])|([\U0001f300-\U0001f64F])|([\U0001f680-\U0001f6FF])')
@@ -140,10 +146,10 @@ def echo(bot, update_id):
                     if i == 50:
                         response = response + "\n"
                 bot.sendMessage(chat_id=chat_id, text=response)
-            else:
-                response = words[0].strip(
-                ) + " is not a recognized command, ask shameel to make it or stop trying dumb crap"
-                bot.sendMessage(chat_id=chat_id, text=response)
+            #else:		
+                #response = words[0].strip(
+                #) + " is not a recognized command, ask shameel to make it or stop trying dumb crap"
+                #bot.sendMessage(chat_id=chat_id, text=response)
 
     return update_id
 
