@@ -97,7 +97,7 @@ def echo(bot, update_id):
                     bot.sendMessage(chat_id=chat_id, text=response)
                 else:
                     bot.sendMessage(chat_id=chat_id, text=users)
-            elif (words[0] == "/cs" or words[0] == "/play" or words[0] == "/ow"):
+            elif (words[0] == "/cs" or words[0] == "/play" or words[0] == "/ow" or words[0] == "/soon"):
                 if(len(words) >= 2):
                     response = gamePlayers + " " + message.split(' ', 1)[1]
                     bot.sendMessage(chat_id=chat_id, text=response)
