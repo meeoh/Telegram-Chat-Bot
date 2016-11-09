@@ -22,7 +22,8 @@ import urbandict
 from bs4 import BeautifulSoup
 from time import sleep
 import re
-from friendsApiKey import API_KEY
+#from friendsApiKey import API_KEY, RAP_GENIUS
+from friendsApiKey import *
 
 try:
     from urllib.error import URLError
@@ -133,7 +134,7 @@ def echo(bot, update_id):
                     bot.sendMessage(chat_id=chat_id, text=pod_value)
 
             elif (words[0] == "/help"):
-                response = "The commands you can type are: \n1. '/all {{message}}' to send a message with everyone mentioned\n2. '/cs {{message}}' or '/play' or '/ow' to send a message with people who play cs/ow mentioned\n3. '/urban {{term}}' to define a term in urban dictionary\n 4. '/wolf {{expression}}' to evaluate an expression using wolframalpha\n"
+                response = "The commands you can type are: \n1. '/all {{message}}' to send a message with everyone mentioned\n2. '/cs {{message}}' or '/play' or '/ow' to send a message with people who play cs/ow mentioned\n3. '/urban {{term}}' to define a term in urban dictionary\n 4. '/wolf {{expression}}' to evaluate an expression using wolframalpha\n 5. '/song {{query}}' to find the top 3 songs in rap genius for your query.\n"
                 bot.sendMessage(chat_id=chat_id, text=response)
             elif (words[0] == "/test"):
                 response = "Test message for @" + str(requester)
@@ -145,6 +146,18 @@ def echo(bot, update_id):
                     response = response + "@newgz "
                     if i == 50:
                         response = response + "\n"
+                bot.sendMessage(chat_id=chat_id, text=response)
+            elif (words[0] == "/song"):
+                response = ""
+                query = message.split(' ', 1)[1]
+                query = query.replace(' ', '%20')
+                r = requests.get("http://api.genius.com/search?q=" + query, headers = {'Authorization': 'Bearer ' + RAP_GENIUS}).json()
+                for i in range(3):
+                     if(r['response'] and r['response']['hits'] and r['response']['hits'][i]):
+                        #pp.pprint(r['response']['hits'][i]['result']['full_title'])
+                        response = response + str(i+1) + ". " + r['response']['hits'][i]['result']['full_title'] + "\n"
+                if response == "":
+                    response = "Couldnt find anything on rap genius"
                 bot.sendMessage(chat_id=chat_id, text=response)
             #else:		
                 #response = words[0].strip(
