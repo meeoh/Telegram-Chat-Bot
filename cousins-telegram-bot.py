@@ -165,10 +165,13 @@ def echo(bot, update_id):
             elif (words[0] == "/test"):
                 response = "Test message for @" + str(requester)
                 bot.sendMessage(chat_id=chat_id, text=response)                
+            elif (words[0] == "/id"):
+                bot.sendMessage(chat_id=chat_id, text="ID: " + str(chat_id))
             else:
                 response = words[0].strip(
                 ) + " is not a recognized command, ask shameel to make it or stop trying dumb crap"
                 bot.sendMessage(chat_id=chat_id, text=response)
+
 
     return update_id
 
