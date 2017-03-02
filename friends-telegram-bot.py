@@ -149,6 +149,9 @@ def echo(bot, update_id):
                 bot.sendMessage(chat_id=chat_id, text=response)
             elif (words[0] == "/song"):
                 response = ""
+		if(len(message.split(' ')) < 2):
+			bot.sendMessage(chat_id=chat_id, text="Try /song {{lyric/artist}}")
+			return update_id
                 query = message.split(' ', 1)[1]
                 query = query.replace(' ', '%20')
                 r = requests.get("http://api.genius.com/search?q=" + query, headers = {'Authorization': 'Bearer ' + RAP_GENIUS}).json()
