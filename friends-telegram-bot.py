@@ -98,7 +98,7 @@ def echo(bot, update_id):
                     bot.sendMessage(chat_id=chat_id, text=response)
                 else:
                     bot.sendMessage(chat_id=chat_id, text=users)
-            elif (words[0] == "/cs" or words[0] == "/play" or words[0] == "/ow" or words[0] == "/soon"):
+            elif (words[0] == "/play"):
                 if(len(words) >= 2):
                     response = gamePlayers + " " + message.split(' ', 1)[1]
                     bot.sendMessage(chat_id=chat_id, text=response)
@@ -134,7 +134,7 @@ def echo(bot, update_id):
                     bot.sendMessage(chat_id=chat_id, text=pod_value)
 
             elif (words[0] == "/help"):
-                response = "The commands you can type are: \n1. '/all {{message}}' to send a message with everyone mentioned\n2. '/cs {{message}}' or '/play' or '/ow' to send a message with people who play cs/ow mentioned\n3. '/urban {{term}}' to define a term in urban dictionary\n 4. '/wolf {{expression}}' to evaluate an expression using wolframalpha\n 5. '/song {{query}}' to find the top 3 songs in rap genius for your query.\n"
+                response = "The commands you can type are: \n1. '/all {{message}}' to send a message with everyone mentioned\n2. '/play {message}' to send a message with people who play games mentioned\n3. '/urban {{term}}' to define a term in urban dictionary\n 4. '/wolf {{expression}}' to evaluate an expression using wolframalpha\n 5. '/song {{query}}' to find the top 3 songs in rap genius for your query.\n"
                 bot.sendMessage(chat_id=chat_id, text=response)
             elif (words[0] == "/test"):
                 response = "Test message for @" + str(requester)
