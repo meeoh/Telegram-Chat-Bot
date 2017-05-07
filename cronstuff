@@ -1,0 +1,3 @@
+*/5 * * * * pgrep -f friends-telegram-bot.py || nohup python /home/pi/Telegram-Chat-Bot/friends-telegram-bot.py > test.out
+*/5 * * * * pgrep -f cousins-telegram-bot.py || nohup python /home/pi/Telegram-Chat-Bot/cousins-telegram-bot.py > test.out
+
