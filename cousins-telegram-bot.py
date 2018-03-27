@@ -87,7 +87,7 @@ def echo(bot, update_id):
             bhattis = "@moezb @riyad"
             words[0] = words[0].lower()
 
-            with open("cousinsTrainingData.js", "a") as myfile:
+            with open("cousinsTrainingData.txt", "a") as myfile:
                 myfile.write('\n{{input: {}, output: {{ {}: 1 }} }}'.format(message, requester))
 
             if (words[0] == "/all"):
