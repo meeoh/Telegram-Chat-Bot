@@ -90,7 +90,7 @@ def echo(bot, update_id):
             words = message.split(' ')
             requester = update.message.from_user.username
             with open("friendsTrainingData.txt", "a") as myfile:
-                myfile.write('\n{{input: {}, output: {{ {}: 1 }} }}'.format(message, requester))
+                myfile.write('\n{{input: {}, output: {{ {}: 1 }} }},'.format(message, requester))
             users = "@bmann2 @meeoh @HonkeyGuy @gurmL @Newgz @KingOfTheJews @akhan47 @Braybowler"
             gamePlayers = "@bmann2 @meeoh @HonkeyGuy @Newgz @Braybowler"
             words[0] = words[0].lower()
