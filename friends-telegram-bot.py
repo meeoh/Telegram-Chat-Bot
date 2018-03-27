@@ -76,13 +76,7 @@ def echo(bot, update_id):
 	except:
 	    return update_id
 
-        try:
-            # UCS-4
-            patt = re.compile(u'([\U00002600-\U000027BF])|([\U0001f300-\U0001f64F])|([\U0001f680-\U0001f6FF])')
-        except re.error:
-            # UCS-2
-            patt = re.compile(u'([\u2600-\u27BF])|([\uD83C][\uDF00-\uDFFF])|([\uD83D][\uDC00-\uDE4F])|([\uD83D][\uDE80-\uDEFF])')
-        message = patt.sub('_emoji_', update.message.text)
+	message = update.message.text.encode('utf-8')
 
 
         if message:
