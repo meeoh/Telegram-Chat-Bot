@@ -91,7 +91,11 @@ def echo(bot, update_id):
             requester = update.message.from_user.username
             with open("friendsTrainingData.txt", "a") as myfile:
                 myfile.write(""" '{{"input": "{}", "output": {{ "{}": 1 }} }}'\n""".format(message, requester))
-            users = "@bmann2 @meeoh @HonkeyGuy @gurmL @Newgz @KingOfTheJews @akhan47 @Braybowler"
+            users = "@bmann2 @meeoh @HonkeyGuy @gurmL "
+            if chat_id == -192555752:
+                users += "@NoahThekidLutz @Matt @Max @Riyadb"
+            elif chat_id == -237580124:
+                users += "@Newgz @akhan47"
             gamePlayers = "@bmann2 @meeoh @HonkeyGuy @Newgz @Braybowler"
             words[0] = words[0].lower()
             if (words[0] == "/all"):
