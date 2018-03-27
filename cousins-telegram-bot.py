@@ -88,7 +88,7 @@ def echo(bot, update_id):
             words[0] = words[0].lower()
 
             with open("cousinsTrainingData.txt", "a") as myfile:
-                myfile.write('\n{{input: {}, output: {{ {}: 1 }} }}'.format(message, requester))
+                myfile.write(""" '{{"input": "{}", "output": {{ "{}": 1 }} }}'\n""".format(message, requester))
 
             if (words[0] == "/all"):
                 if(len(words) >= 2):
