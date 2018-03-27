@@ -73,8 +73,8 @@ def echo(bot, update_id):
             patt = re.compile(u'([\U00002600-\U000027BF])|([\U0001f300-\U0001f64F])|([\U0001f680-\U0001f6FF])')
         except re.error:
             # UCS-2
-            patt = re.compile(u'([\u2600-\u27BF])|([\uD83C][\uDF00-\uDFFF])|([\uD83D][\uDC00-\uDE4F])|([\uD83D][\uDE80-\uDEFF])')        
-        message = patt.sub('_emoji_', update.message.text)             
+            patt = re.compile(u'([\u2600-\u27BF])|([\uD83C][\uDF00-\uDFFF])|([\uD83D][\uDC00-\uDE4F])|([\uD83D][\uDE80-\uDEFF])')
+        message = patt.sub('_emoji_', update.message.text)
 
         if message:
             # Reply to the message
@@ -86,6 +86,9 @@ def echo(bot, update_id):
             abdullahs = "@meeoh @Paytheo @amadrx8 @nomar"
             bhattis = "@moezb @riyad"
             words[0] = words[0].lower()
+
+            with open("cousinsTrainingData.js", "a") as myfile:
+                myfile.write('\n{{input: {}, output: {{ {}: 1 }} }}'.format(message, requester))
 
             if (words[0] == "/all"):
                 if(len(words) >= 2):
@@ -166,7 +169,7 @@ def echo(bot, update_id):
                 bot.sendMessage(chat_id=chat_id, text=response)
             elif (words[0] == "/test"):
                 response = "Test message for @" + str(requester)
-                bot.sendMessage(chat_id=chat_id, text=response)                
+                bot.sendMessage(chat_id=chat_id, text=response)
             elif (words[0] == "/id"):
                 bot.sendMessage(chat_id=chat_id, text="ID: " + str(chat_id))
             else:

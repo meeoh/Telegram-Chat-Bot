@@ -32,9 +32,9 @@ except ImportError:
 
 
 def main():
-    
+
     # Telegram Bot Authorization Token
-    bot = telegram.Bot(API_KEY)     
+    bot = telegram.Bot(API_KEY)
 
     # get the first pending update_id, this is so we can skip over it in case
     # we get an "Unauthorized" exception.
@@ -68,9 +68,9 @@ def echo(bot, update_id):
     # Request updates after the last update_id
     for update in bot.getUpdates(offset=update_id, timeout=10):
         # chat_id is required to reply to any message
-	#print update.message	
+	#print update.message
 	#print update.message.chat_id
-        update_id = update.update_id + 1      
+        update_id = update.update_id + 1
 	try:
 	    chat_id = update.message.chat_id
 	except:
@@ -81,14 +81,16 @@ def echo(bot, update_id):
             patt = re.compile(u'([\U00002600-\U000027BF])|([\U0001f300-\U0001f64F])|([\U0001f680-\U0001f6FF])')
         except re.error:
             # UCS-2
-            patt = re.compile(u'([\u2600-\u27BF])|([\uD83C][\uDF00-\uDFFF])|([\uD83D][\uDC00-\uDE4F])|([\uD83D][\uDE80-\uDEFF])')        
-        message = patt.sub('_emoji_', update.message.text)     
-        
+            patt = re.compile(u'([\u2600-\u27BF])|([\uD83C][\uDF00-\uDFFF])|([\uD83D][\uDC00-\uDE4F])|([\uD83D][\uDE80-\uDEFF])')
+        message = patt.sub('_emoji_', update.message.text)
+
 
         if message:
             # Reply to the message
             words = message.split(' ')
             requester = update.message.from_user.username
+            with open("friendsTrainingData.js", "a") as myfile:
+                myfile.write('\n{{input: {}, output: {{ {}: 1 }} }}'.format(message, requester))
             users = "@bmann2 @meeoh @HonkeyGuy @gurmL @Newgz @KingOfTheJews @akhan47 @Braybowler"
             gamePlayers = "@bmann2 @meeoh @HonkeyGuy @Newgz @Braybowler"
             words[0] = words[0].lower()
@@ -165,7 +167,7 @@ def echo(bot, update_id):
             elif (words[0] == "/id"):
                 bot.sendMessage(chat_id=chat_id, text="ID: " + str(chat_id))
 
-            #else:		
+            #else:
                 #response = words[0].strip(
                 #) + " is not a recognized command, ask shameel to make it or stop trying dumb crap"
                 #bot.sendMessage(chat_id=chat_id, text=response)
