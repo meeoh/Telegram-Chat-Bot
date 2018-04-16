@@ -18,7 +18,7 @@
 import logging
 import telegram
 import requests
-import urbandict
+import urbandictionary as ud
 from bs4 import BeautifulSoup
 from time import sleep
 import re
@@ -82,7 +82,7 @@ def echo(bot, update_id):
             words[0] = words[0].lower()
 
             with open("cousinsTrainingData.txt", "a") as myfile:
-                myfile.write(""" '{{"input": "{}", "output": {{ "{}": 1 }} }}'\n""".format(message, requester))
+                myfile.write(""" '{{"input": '{}', "output": {{ "{}": 1 }} }}'\n""".format(message, requester))
 
             if (words[0] == "/all"):
                 if(len(words) >= 2):
@@ -120,12 +120,13 @@ def echo(bot, update_id):
                     bot.sendMessage(chat_id=chat_id, text=response)
                 else:
                     query = message.split(' ', 1)[1]
-                    urban = urbandict.define(query)[0]
-                    defn = urban["def"]
-                    reply = urban["word"].rstrip() + ": " + defn + \
-                        "\nexamples: " + urban["example"]
+		    urban = ud.define(query)
+		    reply = ""
+		    if(len(urban) == 0):
+			reply = "No definitions"
+		    else:
+		 	reply=urban[0].word + ": " + urban[0].definition + "\n\nexample: " + urban[0].example
                     bot.sendMessage(chat_id=chat_id, text=reply)
-
             elif (words[0] == "/wolf"):
                 if(len(words) < 2):
                     err = "Please provide an argument to Wolfram Alpha"
