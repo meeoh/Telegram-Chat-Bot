@@ -18,7 +18,6 @@
 import logging
 import telegram
 import requests
-import urbandictionary as ud
 from bs4 import BeautifulSoup
 from time import sleep
 import re
@@ -68,13 +67,14 @@ def echo(bot, update_id):
         # chat_id is required to reply to any message
         chat_id = update.message.chat_id
         update_id = update.update_id + 1
-	message = update.message.text.encode('utf-8')
 
+        if update.message.text is None: return update_id
+	message = update.message.text.encode('utf-8')
         if message:
             # Reply to the message
             words = message.split(' ')
             requester = update.message.from_user.username
-            users = "@meeoh @KamalZia @Sh4ni @basil3 @jullybhai @Paytheo @amadrx8 @moezb @gaandslayer @nomar"
+            users = "@meeoh @KamalZia @Sh4ni @basil3 @jullybhai @Paytheo @amad  rx8 @moezb @gaandslayer @nomar"
             zias = "@KamalZia @Sh4ni"
             ahmads = "@jullybhai @basil3 @gaandslayer"
             abdullahs = "@meeoh @Paytheo @amadrx8 @nomar"
@@ -114,19 +114,20 @@ def echo(bot, update_id):
                     bot.sendMessage(chat_id=chat_id, text=bhattis)
                 else:
                     bot.sendMessage(chat_id=chat_id, text=bhattis)
-            elif (words[0] == "/urban"):
-                if(len(words) < 2):
-                    response = "Please provide a term to look up in the Urban Dictionary"
-                    bot.sendMessage(chat_id=chat_id, text=response)
-                else:
-                    query = message.split(' ', 1)[1]
-		    urban = ud.define(query)
-		    reply = ""
-		    if(len(urban) == 0):
-			reply = "No definitions"
-		    else:
-		 	reply=urban[0].word + ": " + urban[0].definition + "\n\nexample: " + urban[0].example
-                    bot.sendMessage(chat_id=chat_id, text=reply)
+            #elif (words[0] == "/urban"):
+                #if(len(words) < 2):
+                    #response = "Please provide a term to look up in the Urban Dictionary"
+                    #bot.sendMessage(chat_id=chat_id, text=response)
+                #else:
+                    #query = message.split(' ', 1)[1]
+		    #urban = ud.define(query)
+		    #reply = ""
+		    #if(len(urban) == 0):
+			#reply = "No definitions"
+		    #else:
+		 	#reply=urban[0].word + ": " + urban[0].definition + "\n\nexample: " + urban[0].example
+                    #bot.sendMessage(chat_id=chat_id, text=reply)
+	   
             elif (words[0] == "/wolf"):
                 if(len(words) < 2):
                     err = "Please provide an argument to Wolfram Alpha"

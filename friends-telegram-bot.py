@@ -18,7 +18,6 @@
 import logging
 import telegram
 import requests
-import urbandictionary as ud
 from bs4 import BeautifulSoup
 from time import sleep
 import re
@@ -76,6 +75,7 @@ def echo(bot, update_id):
 	except:
 	    return update_id
 
+        if update.message.text is None: return update_id
 	message = update.message.text.encode('utf-8')
 
         if message:
@@ -103,20 +103,22 @@ def echo(bot, update_id):
                     bot.sendMessage(chat_id=chat_id, text=response)
                 else:
                     bot.sendMessage(chat_id=chat_id, text=gamePlayers)
-            elif (words[0] == "/urban"):
-                if(len(words) < 2):
-                    response = "Please provide a term to look up in the Urban Dictionary"
-                    bot.sendMessage(chat_id=chat_id, text=response)
-                else:
-                    query = message.split(' ', 1)[1]
-		    urban = ud.define(query)
-		    reply = ""
-		    if(len(urban) == 0):
-			reply = "No definitions"
-		    else:
-			reply=urban[0]
-         	        reply=urban[0].word + ": " + urban[0].definition + "\n\nexample: " + urban[0].example
-                    bot.sendMessage(chat_id=chat_id, text=reply)
+            
+            #elif (words[0] == "/urban"):
+                #if(len(words) < 2):
+                    #response = "Please provide a term to look up in the Urban Dictionary"
+                    #bot.sendMessage(chat_id=chat_id, text=response)
+                #else:
+                    #query = message.split(' ', 1)[1]
+		    #urban = ud.define(query)
+		    #reply = ""
+		    #if(len(urban) == 0):
+			#reply = "No definitions"
+		    #else:
+			#reply=urban[0]
+         	        #reply=urban[0].word + ": " + urban[0].definition + "\n\nexample: " + urban[0].example
+            #        bot.sendMessage(chat_id=chat_id, text=reply)
+            
             elif (words[0] == "/wolf"):
                 if(len(words) < 2):
                     err = "Please provide an argument to Wolfram Alpha"
