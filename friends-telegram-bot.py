@@ -22,7 +22,9 @@ from bs4 import BeautifulSoup
 from time import sleep
 import re
 #from friendsApiKey import API_KEY, RAP_GENIUS
-from friendsApiKey import *
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 try:
     from urllib.error import URLError
@@ -33,7 +35,7 @@ except ImportError:
 def main():
 
     # Telegram Bot Authorization Token
-    bot = telegram.Bot(API_KEY)
+    bot = telegram.Bot(os.getenv('FRIENDS_API_KEY'))
 
     # get the first pending update_id, this is so we can skip over it in case
     # we get an "Unauthorized" exception.

@@ -3,3 +3,4 @@ friendsApiKey.pyc
 cousinsApiKey.py
 cousinsApiKey.pyc
 *.txt
+.env
