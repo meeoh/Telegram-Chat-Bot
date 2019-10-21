@@ -14,6 +14,6 @@ A simple bot used in my personal telegram conversations. Allows users to do the 
 \*\* - only applies to cousins bot
 
 ### Usage
--Add a root level `.env` file with: `FRIENDS_API_KEY`, `COUSINS_API_KEY`,`RAP_GENIUS`
+-Add a root level `.env` file with: `FRIENDS_API_KEY`, `COUSINS_API_KEY`, `RAP_GENIUS`
 -Run `pip install requirements` <br>
 -Run python friends-telegram-bot.py or cousins-telegram-bot.py
