@@ -76,7 +76,7 @@ def echo(bot, update_id):
             # Reply to the message
             words = message.split(' ')
             requester = update.message.from_user.username
-            users = "@meeoh @KamalZia @Sh4ni @basil3 @jullybhai @Paytheo @amad  rx8 @moezb @gaandslayer @nomar"
+            users = "@meeoh @KamalZia @Sh4ni @basil3 @jullybhai @Paytheo @amadrx8 @moezb @gaandslayer @nomar"
             zias = "@KamalZia @Sh4ni"
             ahmads = "@jullybhai @basil3 @gaandslayer"
             abdullahs = "@meeoh @Paytheo @amadrx8 @nomar"

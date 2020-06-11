@@ -88,7 +88,7 @@ def echo(bot, update_id):
                 myfile.write(""" '{{"input": '{}', "output": {{ "{}": 1 }} }}'\n""".format(message, requester))
             users = "@bmann2 @meeoh @HonkeyGuy @gurmL "
             if chat_id == -192555752:
-                users += "@NoahThekidLutz @Matt @Max @Riyadb"
+                users += "@NoahThekidLutz @MattMalini @Max_halley @Riyadb"
             elif chat_id == -237580124:
                 users += "@Newgz @akhan47"
             gamePlayers = "@bmann2 @meeoh @HonkeyGuy @Newgz @Braybowler"
