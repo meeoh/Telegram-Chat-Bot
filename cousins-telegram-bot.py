@@ -71,10 +71,10 @@ def echo(bot, update_id):
         update_id = update.update_id + 1
 
         if update.message.text is None: return update_id
-	message = update.message.text.encode('utf-8')
+        message = update.message.text.encode('utf-8')
         if message:
             # Reply to the message
-            words = message.split(' ')
+            words = message.decode().split(' ')
             requester = update.message.from_user.username
             users = "@meeoh @KamalZia @Sh4ni @basil3 @jullybhai @Paytheo @amadrx8 @moezb @gaandslayer @nomar"
             zias = "@KamalZia @Sh4ni"
@@ -88,31 +88,31 @@ def echo(bot, update_id):
 
             if (words[0] == "/all"):
                 if(len(words) >= 2):
-                    response = users + " " + message.split(' ', 1)[1]
+                    response = users + " " + message.decode().split(' ', 1)[1]
                     bot.sendMessage(chat_id=chat_id, text=response)
                 else:
                     bot.sendMessage(chat_id=chat_id, text=users)
             elif (words[0] == "/ahmads"):
                 if(len(words) >= 2):
-                    response = ahmads + " " + message.split(' ', 1)[1]
+                    response = ahmads + " " + message.decode().split(' ', 1)[1]
                     bot.sendMessage(chat_id=chat_id, text=response)
                 else:
                     bot.sendMessage(chat_id=chat_id, text=ahmads)
             elif (words[0] == "/zias"):
                 if(len(words) >= 2):
-                    response = zias + " " + message.split(' ', 1)[1]
+                    response = zias + " " + message.decode().split(' ', 1)[1]
                     bot.sendMessage(chat_id=chat_id, text=zias)
                 else:
                     bot.sendMessage(chat_id=chat_id, text=zias)
             elif (words[0] == "/abdullahs"):
                 if(len(words) >= 2):
-                    response = abdullahs + " " + message.split(' ', 1)[1]
+                    response = abdullahs + " " + message.decode().split(' ', 1)[1]
                     bot.sendMessage(chat_id=chat_id, text=abdullahs)
                 else:
                     bot.sendMessage(chat_id=chat_id, text=abdullahs)
             elif (words[0] == "/bhattis"):
                 if(len(words) >= 2):
-                    response = abdullahs + " " + message.split(' ', 1)[1]
+                    response = abdullahs + " " + message.decode().split(' ', 1)[1]
                     bot.sendMessage(chat_id=chat_id, text=bhattis)
                 else:
                     bot.sendMessage(chat_id=chat_id, text=bhattis)
@@ -135,7 +135,7 @@ def echo(bot, update_id):
                     err = "Please provide an argument to Wolfram Alpha"
                     bot.sendMessage(chat_id=chat_id, text=err)
                 else:
-                    query = message.split(' ', 1)[1]
+                    query = message.decode().split(' ', 1)[1]
                     query = query.replace('+', 'plus')
                     r = requests.get(
                         "http://api.wolframalpha.com/v2/query?appid=E533KV-9URK4TXPJK&input=" + query + "&format=plaintext")
@@ -148,13 +148,14 @@ def echo(bot, update_id):
                     bot.sendMessage(chat_id=chat_id, text=pod_value)
             elif (words[0] == "/song"):
                 response = ""
-		if(len(message.split(' ')) < 2):
-			return update_id
-                query = message.split(' ', 1)[1]
+                if(len(message.decode().split(' ')) < 2):
+                    return update_id
+                query = message.decode().split(' ', 1)[1]
                 query = query.replace(' ', '%20')
-                r = requests.get("http://api.genius.com/search?q=" + query, headers = {'Authorization': 'Bearer ' + RAP_GENIUS}).json()
+                r = requests.get("http://api.genius.com/search?q=" + query, headers = {'Authorization': 'Bearer ' + os.getenv('RAP_GENIUS')}).json()
                 for i in range(3):
-                     if(r['response'] and r['response']['hits'] and r['response']['hits'][i]):
+                    print(r)
+                    if(r['response'] and r['response']['hits'] and r['response']['hits'][i]):
                         #pp.pprint(r['response']['hits'][i]['result']['full_title'])
                         response = response + str(i+1) + ". " + r['response']['hits'][i]['result']['full_title'] + "\n"
                 if response == "":

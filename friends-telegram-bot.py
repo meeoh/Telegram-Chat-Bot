@@ -72,17 +72,17 @@ def echo(bot, update_id):
 	#print update.message
 	#print update.message.chat_id
         update_id = update.update_id + 1
-	try:
-	    chat_id = update.message.chat_id
-	except:
-	    return update_id
+        try:
+            chat_id = update.message.chat_id
+        except:
+            return update_id
 
         if update.message.text is None: return update_id
-	message = update.message.text.encode('utf-8')
+        message = update.message.text.encode('utf-8')
 
         if message:
             # Reply to the message
-            words = message.split(' ')
+            words = message.decode().split(' ')
             requester = update.message.from_user.username
             with open("friendsTrainingData.txt", "a") as myfile:
                 myfile.write(""" '{{"input": '{}', "output": {{ "{}": 1 }} }}'\n""".format(message, requester))
@@ -95,13 +95,13 @@ def echo(bot, update_id):
             words[0] = words[0].lower()
             if (words[0] == "/all"):
                 if(len(words) >= 2):
-                    response = users + " " + message.split(' ', 1)[1]
+                    response = users + " " + message.decode().split(' ', 1)[1]
                     bot.sendMessage(chat_id=chat_id, text=response)
                 else:
                     bot.sendMessage(chat_id=chat_id, text=users)
             elif (words[0] == "/play"):
                 if(len(words) >= 2):
-                    response = gamePlayers + " " + message.split(' ', 1)[1]
+                    response = gamePlayers + " " + message.decode().split(' ', 1)[1]
                     bot.sendMessage(chat_id=chat_id, text=response)
                 else:
                     bot.sendMessage(chat_id=chat_id, text=gamePlayers)
@@ -126,7 +126,7 @@ def echo(bot, update_id):
                     err = "Please provide an argument to Wolfram Alpha"
                     bot.sendMessage(chat_id=chat_id, text=err)
                 else:
-                    query = message.split(' ', 1)[1]
+                    query = message.decode().split(' ', 1)[1]
                     query = query.replace('+', 'plus')
                     r = requests.get(
                         "http://api.wolframalpha.com/v2/query?appid=E533KV-9URK4TXPJK&input=" + query + "&format=plaintext")
@@ -154,12 +154,12 @@ def echo(bot, update_id):
                 bot.sendMessage(chat_id=chat_id, text=response)
             elif (words[0] == "/song"):
                 response = ""
-		if(len(message.split(' ')) < 2):
-			bot.sendMessage(chat_id=chat_id, text="Try /song {{lyric/artist}}")
-			return update_id
-                query = message.split(' ', 1)[1]
+                if(len(message.decode().split(' ')) < 2):
+                    bot.sendMessage(chat_id=chat_id, text="Try /song {{lyric/artist}}")
+                    return update_id
+                query = message.decode().split(' ', 1)[1]
                 query = query.replace(' ', '%20')
-                r = requests.get("http://api.genius.com/search?q=" + query, headers = {'Authorization': 'Bearer ' + RAP_GENIUS}).json()
+                r = requests.get("http://api.genius.com/search?q=" + query, headers = {'Authorization': 'Bearer ' + os.getenv('RAP_GENIUS')}).json()
                 for i in range(3):
                      if(r['response'] and r['response']['hits'] and r['response']['hits'][i]):
                         #pp.pprint(r['response']['hits'][i]['result']['full_title'])
